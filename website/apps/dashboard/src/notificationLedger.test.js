@@ -489,6 +489,18 @@ test('an activity row is flagged as a measurement, an incident row is not', () =
       .current[0].isIncident,
     false,
   )
+  // ⛔ AND THE ROW CARRIES `registerKnown`, because the CHIP makes a claim from it:
+  // `isIncident` alone cannot tell a stamped activity row from a row we could not
+  // read (both are `false`), so a chip keyed on it labelled a real activity row
+  // "unclassified" — the render said the opposite of the detail view, which asks
+  // `registerKnownOf`. The field must travel on the entry, from one definition.
+  assert.equal(activity.registerKnown, true)
+  assert.equal(incident.registerKnown, true)
+  assert.equal(
+    buildLedger({ alerts: [alert({ register: undefined, type: 'mystery' })], state: emptyState(), now: NOW })
+      .current[0].registerKnown,
+    false,
+  )
 })
 
 test('the local key is the episode IDENTITY, so a re-keyed bout cannot resurrect a dismissal', () => {
@@ -583,6 +595,23 @@ test('an unclassified row does not claim that nothing was changed', () => {
   assert.equal(
     detailOf(alert(), NOW).fields.find((f) => f.label === 'Kind').value,
     KIND_INCIDENT,
+  )
+})
+
+test('a payload whose only values are EMPTY carries nothing', () => {
+  // Counting KEYS said a payload with an empty string carried machine detail the
+  // dashboard hides (review finding). Only a usable value counts.
+  for (const details of [{ country: '' }, { country: null }, { ip: undefined }, {}, []]) {
+    assert.equal(
+      detailOf(alert({ details }), NOW).detailState,
+      'none',
+      JSON.stringify(details),
+    )
+  }
+  // …and a payload with only internal vocabulary is still 'undisplayable', not 'none'.
+  assert.equal(
+    detailOf(alert({ details: { rule: 'point_create' } }), NOW).detailState,
+    'undisplayable',
   )
 })
 
