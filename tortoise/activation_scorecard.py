@@ -360,7 +360,7 @@ FUNNEL_QUERY = (
 # directly on a real embedded engine), and a ``params=…`` argument there does not
 # fit in 100 columns, so it wraps and pushes later lines down. Measured over every
 # ``hosted_api.py:<line>`` cite in the tracked tree: **157** distinct cite
-# targets have a line number LARGER than 29660 (30597 … 99999) and those are the
+# targets have a line number LARGER than 29660 (30600 … 99999) and those are the
 # ones that shift; **570** have a number smaller than it (26 … 29657) and cannot
 # move. (728 distinct targets in all — the remainder is 29660 itself, which this
 # very comment names. NEVER re-take these by hand — that is how they went wrong
