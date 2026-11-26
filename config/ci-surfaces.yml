@@ -58,8 +58,8 @@ version: 1
 # INTO, never carried from the branch that first wrote it, and never spliced from BOTH parents: a
 # fold that keeps two re-derivations makes the guard read the clause twice, which is a red no
 # reader of the prose can see. On THIS tree — `origin/main` merged in, plus THIS lane's own row
-# (`tests/test_13450_ep_position_axis_participation.py`, `core`, at the flat 2.0 s
-# `DEFAULT_FAST_WEIGHT`), PLUS every row `main` carries at this base — the verb packs nine shards
+# (`tests/test_14691_structure_evidence.py`, `core`, at the flat 2.0 s `DEFAULT_FAST_WEIGHT`),
+# PLUS every row `main` carries at this base — the verb packs nine shards
 # at 827.4 s (a, c, d, e, f, h, i, j, k) and two at 827.5 s (b, g), so `ceil(827.5/60 x 2)` = 28 m
 # governs (a shard's job-level wall clock is the SLOWEST shard's) — and the same emission prints
 # `watchdog_minutes: 28` with `watchdog_headroom: 2.03` (1680 / 827.5 = 2.0302), so the two agree
@@ -77,10 +77,17 @@ version: 1
 # ⛔ THAT PAIR IS THIS TREE'S ALONE: no parent's figure may be carried here, and none is — `main`'s
 # own partition must be re-derived on `main`, never read out of this sentence, and each fold's own
 # figures stay on the commit that measured them. The delta is measurable and small: `fast_pool()`
-# holds 1339 files at this head against 1338 on `main`, read by running the verb on one manifest per
-# side (`origin/main`'s blob and this tree's), and the ONE addition this lane brings is
-# `tests/test_13450_ep_position_axis_participation.py` — the row that moved the partition off
-# `main`'s own — with nothing `main` carries missing from this tree. ⛔ Every OTHER row this tree
+# holds 1340 files at this head against 1339 on `main`, read by running the verb on one manifest per
+# side (`origin/main`'s blob and this tree's) — and the ONE addition THIS lane brings is
+# `tests/test_14691_structure_evidence.py`, the row registered by the commit that added the T6
+# bundle's falsifiers. With nothing `main` carries missing from this tree, that one row is the whole
+# delta: measured, `set(fast_pool(head)) - set(fast_pool(main))` returns exactly that file and the
+# reverse difference is empty. ⛔ An earlier revision of THIS paragraph said the same thing about
+# `tests/test_13450_ep_position_axis_participation.py` and quoted 1339/1338: that row is `main`'s at
+# this base (it landed with `#13450`'s own fold, and `fast_pool(main)` contains it), so reading it as
+# this lane's delta attributed a partition move to a row that had already merged — and its counts
+# were one short on both sides. Both corrected by measurement, not by editing a number into place.
+# ⛔ Every OTHER row this tree
 # carries is `main`'s at this head, NOT this lane's (`#14597`'s expansion-fusion row, `#14548`'s
 # residue RATCHET — `tests/test_sdk_privatise_sweep.py`, the one `core` row here whose weight is
 # NOT the flat 2.0 s — `#14607`'s `tests/test_mcp_selfcheck.py` and
